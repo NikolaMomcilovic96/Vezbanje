@@ -62,4 +62,77 @@ fun main() {
         }
     }
     println("")
+
+    val recenica = "Ja sam Nikola"
+    val duzina = recenica.count()
+    val novaRecenica = ""
+    val pocetna = 0
+    fun reverse(duzina: Int, novaRecenica: String, pocetna: Int){
+        var trenutna = pocetna
+        val slovo = recenica[duzina-trenutna-1]
+        var najnovijaRecenica = novaRecenica
+        najnovijaRecenica += slovo
+        if (trenutna < duzina-1){
+            trenutna += 1
+            reverse(duzina, najnovijaRecenica, trenutna)
+        }else{
+            print(najnovijaRecenica)
+        }
+    }
+    reverse(duzina, novaRecenica, pocetna)
+    println()
+    println()
+    println()
+
+
+    fun tablicaMnozenja(duzina: Int){
+        for (i in 0..duzina){
+            for (j in 1..duzina){
+                print("    " + i * j)
+            }
+            println()
+        }
+    }
+    tablicaMnozenja(12)
+
+
+    val secretNumber = 14
+    val counter = 1
+    fun guessTheNumber(number: Int, counter: Int){
+        var newCounter = counter
+
+        if (number < secretNumber){
+            println("Greska. Broj $number je manji od trazenog broja.")
+            newCounter += 1
+            guessTheNumber(17, newCounter)
+        }
+        else if (number > secretNumber){
+            println("Greska. Broj $number je veci od trazenog broja.")
+            newCounter += 1
+            guessTheNumber(14, newCounter)
+        }
+        else if ( number == secretNumber){
+            println("Pogodili ste broj $secretNumber iz $counter pokusaja.")
+        }
+    }
+    guessTheNumber(12, counter)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

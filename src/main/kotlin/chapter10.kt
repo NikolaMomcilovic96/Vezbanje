@@ -137,26 +137,38 @@ fun main(){
     println("----------------------")
 
     //2
-    fun mathSum(length: Int, series: (Int) -> Int) : Int{
+//    fun mathSum(length: Int, series: (Int) -> Int) : Int{
+//        var result = 0
+//        for (i in 0..length){
+//            result += series(i)
+//        }
+//        return result
+//    }
+//    println(mathSum(10){it * it})
+//
+//    fun fibonacci(number: Int): Int{
+//        if(number <= 0){
+//            return 0
+//        }
+//        if (number == 1 || number == 2){
+//            return 1
+//        }
+//        return fibonacci(number - 1) + fibonacci(number - 2)
+//    }
+//    println(mathSum(10, ::fibonacci))
+    println("----------------------")
+
+    fun mathSum(length: Int, series: (Int) -> Int): Int{
         var result = 0
-        for (i in 0..length){
+        for (i in 1..length){
             result += series(i)
         }
         return result
     }
-    println(mathSum(10){it * it})
+    println(mathSum(5) {
+        it * it
+    })
 
-    fun fibonacci(number: Int): Int{
-        if(number <= 0){
-            return 0
-        }
-        if (number == 1 || number == 2){
-            return 1
-        }
-        return fibonacci(number - 1) + fibonacci(number - 2)
-    }
-    println(mathSum(10, ::fibonacci))
-    println("----------------------")
 
     //3
     val appRatings = mapOf(
@@ -176,4 +188,6 @@ fun main(){
         it.key
     }
     println(goodApps)
+
+
 }
