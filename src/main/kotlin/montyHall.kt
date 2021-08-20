@@ -16,7 +16,6 @@ fun main() {
     println("!!!Dobrodošli u Monty Hall kviz!!!")
     println("------------------------------------")
 
-
     findOtherFalse()
     //chooseTheDoor(firstGuess)
 }
