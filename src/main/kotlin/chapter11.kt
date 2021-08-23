@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 import kotlin.math.pow
 
+=======
+>>>>>>> 049335f (Added chapter 12)
 class Person(var firstName: String, var lastName: String) {
     val fullName
         get() = "$firstName $lastName"
@@ -11,7 +14,11 @@ class Grade(
     val credits: Double
 )
 
+<<<<<<< HEAD
 class Student(
+=======
+/*class Student(
+>>>>>>> 049335f (Added chapter 12)
     val firstName: String,
     val lastName: String,
     val grades: MutableList<Grade> = mutableListOf(),
@@ -21,7 +28,11 @@ class Student(
         grades.add(grade)
         credits += grade.credits
     }
+<<<<<<< HEAD
 }
+=======
+}*/
+>>>>>>> 049335f (Added chapter 12)
 
 fun main() {
     val john = Person("Nikola", "Momcilovic")
