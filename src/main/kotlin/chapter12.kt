@@ -120,3 +120,5 @@ interface Counts{
     fun studentCount():Int
     fun scientisCount():Int
 }
+
+
