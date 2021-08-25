@@ -159,7 +159,7 @@ interface Counts {
 //CHALLANGE
 //1
 object Threshhold {
-    val threshold = 15
+    const val threshold = 15
 
     fun isAboveThreshold(value: Int) {
         if (value > threshold)
