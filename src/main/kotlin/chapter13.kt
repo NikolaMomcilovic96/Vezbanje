@@ -1,5 +1,4 @@
 import kotlin.math.PI
-import kotlin.math.atan
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
 import kotlin.properties.Delegates
