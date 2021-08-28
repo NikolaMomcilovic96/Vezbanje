@@ -29,5 +29,4 @@ fun main() {
     }
     sorting(numbers, first, length)
     println("Sortirani niz: $sortedArray")
-
 }

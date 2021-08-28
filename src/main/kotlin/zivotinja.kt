@@ -1,7 +1,7 @@
 import kotlin.math.sqrt
 
 fun main() {
-    /*fun sort(test: Array<Int>): Array<Int> {
+    fun sort(test: Array<Int>): Array<Int> {
         val listLength = test.count()
         var swap = true
         while (swap) {
@@ -193,76 +193,36 @@ fun main() {
             else -> println("Non existant month")
         }
     }
-    digitMonthToString(8)*/
+    digitMonthToString(8)
 
-    //Vezbanje 27. avgust
-    poredjajBrodoveIgrac()
+
+
+    diagonal1()
+
 }
 
-var red1 = arrayListOf(0,0,0,0,0,0,0,0,0,0)
-var red2 = arrayListOf(0,0,0,0,0,0,0,0,0,0)
-var red3 = arrayListOf(0,0,0,0,0,0,0,0,0,0)
-var red4 = arrayListOf(0,0,0,0,0,0,0,0,0,0)
-var red5 = arrayListOf(0,0,0,0,0,0,0,0,0,0)
-var red6 = arrayListOf(0,0,0,0,0,0,0,0,0,0)
-var red7 = arrayListOf(0,0,0,0,0,0,0,0,0,0)
-var red8 = arrayListOf(0,0,0,0,0,0,0,0,0,0)
-var red9 = arrayListOf(0,0,0,0,0,0,0,0,0,0)
-var red10 = arrayListOf(0,0,0,0,0,0,0,0,0,0)
+var nule = arrayOf(
+    (arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)),
+    (arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)),
+    (arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)),
+    (arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)),
+    (arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)),
+    (arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)),
+    (arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)),
+    (arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)),
+    (arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)),
+    (arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)),
+)
 
-fun mojaTabla(){
-    println(red1)
-    println(red2)
-    println(red3)
-    println(red4)
-    println(red5)
-    println(red6)
-    println(red7)
-    println(red8)
-    println(red9)
-    println(red10)
-}
-
-fun poredjajBrodoveIgrac(){
-    //val prviRed = (1..10).random()
-    val prviRed = 1
-    var drugiRed: Int
-    var treciRed: Int
-    var cetvrtiRed: Int
-    var petiRed: Int
-    var drugoPolje: Int
-    var trecePolje: Int
-    var cetvrtoPolje: Int
-    var petoPolje: Int
-    val prvoPolje = (0 until 10).random()
-    drugoPolje = arrayOf(prvoPolje - 1, prvoPolje + 1).random()
-    if (prviRed == 1){
-        red1[prvoPolje] = 1
-
-        val horVer = arrayOf("hor","ver").random()
-        if (horVer == "hor") {                          //horizontalno
-            if (prvoPolje != 0 && prvoPolje != 10) {
-                red1[drugoPolje] = 1
-            }else if (prvoPolje == 0){
-                drugoPolje = prvoPolje+1
-                red1[drugoPolje] = 1
-            }else if (prvoPolje == 9){
-                drugoPolje = prvoPolje-1
-                red1[drugoPolje] = drugoPolje
+fun diagonal1() {
+    for (i in 0 until nule.count()) {
+        for (j in 0 until nule[0].count()) {
+            if (i == j) {
+                nule[i][j] = 1
             }
-            if (drugoPolje!=0 && drugoPolje!=10){
-                if (red1[prvoPolje] > red1[drugoPolje]){
-                    trecePolje = drugoPolje-1
-                    red1[trecePolje] = 1
-                }else{
-                    trecePolje = drugoPolje+1
-                    red1[trecePolje] = 1
-                }
-
-            }
-        }else{                                          //vertikalno redjanje
-            red2[prvoPolje] = 1
         }
-    }                                                   //kraj prvog reda
-    mojaTabla()
+    }
+    for (i in nule.indices) {
+        println(nule[i].contentToString())
+    }
 }
