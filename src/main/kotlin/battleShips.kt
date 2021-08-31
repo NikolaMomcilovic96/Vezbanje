@@ -1,121 +1,76 @@
 fun main() {
-
-
     val igrac = Player()
     val komp = Player()
 
     igrac.dodajBrodove()
     komp.dodajBrodove()
-    for (i in igrac.tabla.indices){
+    for (i in igrac.tabla.indices) {
         println("${igrac.tabla[i]}            ${komp.tabla[i]}")
     }
-    println("Poeni igrac: ${igrac.poeni}                            Poeni komp: ${komp.poeni}")
-    println("Pokusaji igrac: ${igrac.pokusaji}                         Pokusaji komp: ${komp.pokusaji}")
-    //gadjanje()
+
+    igracGadja(igrac, komp)
+
+    for (i in igrac.tabla.indices) {
+        println("${igrac.tabla[i]}            ${komp.tabla[i]}")
+    }
+    println("Poeni igrac: ${igrac.poeni}                           Poeni komp: ${komp.poeni}")
+    println("Pokusaji igrac: ${igrac.pokusaji}                        Pokusaji komp: ${komp.pokusaji}")
 }
 
-/*
-fun gadjanje() {
-    igracGadja()
-}
-
-fun igracGadja() {
+fun igracGadja(prvi: Player, drugi: Player) {
     val red = (0..9).random()
     val polje = (0..9).random()
-    if (isChecked(red, polje)) {
-        println("Igrac gadja polje $red-$polje")
-        shipOrSea(red, polje)
-        if (isOver(poeniIgrac)) {
+    if (isChecked(red, polje, prvi)) {
+        println("Gadja polje $red-$polje")
+        shipOrSea(red, polje, prvi)
+        if (isOver(prvi.poeni)) {
             println("Gotova igra.")
-            mojaTabla()
         } else {
-            kompGadja()
+            igracGadja(drugi, prvi)
         }
     } else {
-        igracGadja()
+        igracGadja(prvi, drugi)
     }
 }
 
-fun shipOrSea(red: Int, polje: Int) {
-    if (tablaKomp[red][polje] == 0) {
-        println("Igrac je promasio.")
-        tablaKomp[red][polje] = 3
-        pokusajiIgrac += 1
-    } else {
-        println("Igrac je pogodio brod!")
-        tablaKomp[red][polje] = 2
-        poeniIgrac += 1
-        pokusajiIgrac += 1
-    }
-}
-
-fun isChecked(red: Int, polje: Int): Boolean {
-    if (tablaKomp[red][polje] == 0 || tablaKomp[red][polje] == 1) {
+fun isChecked(red: Int, polje: Int, igrac: Player): Boolean {
+    if (igrac.tabla[red][polje] == 0 || igrac.tabla[red][polje] == 1) {
         return true
     }
     return false
+}
+
+fun shipOrSea(red: Int, polje: Int, igrac: Player) {
+    if (igrac.tabla[red][polje] == 0) {
+        println("Promasaj.")
+        igrac.tabla[red][polje] = 3
+        igrac.pokusaji += 1
+    } else {
+        println("Brod je pogodjen!")
+        igrac.tabla[red][polje] = 2
+        igrac.poeni += 1
+        igrac.pokusaji += 1
+    }
 }
 
 fun isOver(poeni: Int): Boolean {
     if (poeni == 19) {
-        if (poeniIgrac == 19) {
-            println("Igrac je pobedio!")
-        } else {
-            println("Komp je pobedio!")
-        }
         return true
     }
     return false
 }
-
-fun kompGadja() {
-    val red = (0..9).random()
-    val polje = (0..9).random()
-    if (isCheckedK(red, polje)) {
-        println("Komp gadja polje $red-$polje")
-        shipOrSeaK(red, polje)
-        if (isOver(poeniKomp)) {
-            println("Gotova igra.")
-            mojaTabla()
-        } else {
-            igracGadja()
-        }
-    } else {
-        kompGadja()
-    }
-}
-
-fun isCheckedK(red: Int, polje: Int): Boolean {
-    if (tabla[red][polje] == 0 || tabla[red][polje] == 1) {
-        return true
-    }
-    return false
-}
-
-fun shipOrSeaK(red: Int, polje: Int) {
-    if (tabla[red][polje] == 0) {
-        println("Komp je promasio.")
-        tabla[red][polje] = 3
-        pokusajiKomp += 1
-    } else {
-        println("Komp je pogodio brod!")
-        tabla[red][polje] = 2
-        poeniKomp += 1
-        pokusajiKomp += 1
-    }
-}*/
 
 class Player(
-    var prvoPolje: Int=0,
-    var drugoPolje: Int=0,
-    var trecePolje: Int=0,
-    var cetvrtoPolje: Int=0,
-    var petoPolje: Int=0,
-    var prviRed: Int=0,
-    var drugiRed: Int=0,
-    var treciRed: Int=0,
-    var cetvrtiRed: Int=0,
-    var petiRed: Int=0,
+    var prvoPolje: Int = 0,
+    var drugoPolje: Int = 0,
+    var trecePolje: Int = 0,
+    var cetvrtoPolje: Int = 0,
+    var petoPolje: Int = 0,
+    var prviRed: Int = 0,
+    var drugiRed: Int = 0,
+    var treciRed: Int = 0,
+    var cetvrtiRed: Int = 0,
+    var petiRed: Int = 0,
     var tabla: ArrayList<ArrayList<Int>> = arrayListOf(
         (arrayListOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)),
         (arrayListOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)),
@@ -130,8 +85,8 @@ class Player(
     ),
     var poeni: Int = 0,
     var pokusaji: Int = 0
-){
-    fun dodajBrodove(){
+) {
+    fun dodajBrodove() {
         dodajPrvoPolje(5)
         dodajPrvoPolje(4)
         dodajPrvoPolje(4)
@@ -155,7 +110,6 @@ class Player(
         } else {
             dodajPrvoPolje(velicina)
         }
-
     }
 
     fun dodajDrugoPolje(velicina: Int) {
@@ -209,9 +163,17 @@ class Player(
                 }
             } else {
                 if (prvoPolje > drugoPolje) {
-                    trecePolje = arrayOf(drugoPolje - 1, prvoPolje + 1).random()
+                    if (drugoPolje == 0) {
+                        trecePolje = prvoPolje + 1
+                    } else {
+                        trecePolje = arrayOf(drugoPolje - 1, prvoPolje + 1).random()
+                    }
                 } else {
-                    trecePolje = arrayOf(prvoPolje - 1, drugoPolje + 1).random()
+                    if (prvoPolje == 0) {
+                        trecePolje = drugoPolje + 1
+                    } else {
+                        trecePolje = arrayOf(prvoPolje - 1, drugoPolje + 1).random()
+                    }
                 }
             }
             if (isEmpty(prviRed, trecePolje)) {
@@ -239,9 +201,17 @@ class Player(
                 }
             } else {
                 if (prviRed > drugiRed) {
-                    treciRed = arrayOf(drugiRed - 1, prviRed + 1).random()
+                    if (drugiRed == 0) {
+                        treciRed = prviRed + 1
+                    } else {
+                        treciRed = arrayOf(drugiRed - 1, prviRed + 1).random()
+                    }
                 } else {
-                    treciRed = arrayOf(prviRed - 1, drugiRed + 1).random()
+                    if (prviRed == 0) {
+                        treciRed = drugiRed + 1
+                    } else {
+                        treciRed = arrayOf(prviRed - 1, drugiRed + 1).random()
+                    }
                 }
             }
             if (isEmpty(treciRed, prvoPolje)) {
@@ -260,9 +230,7 @@ class Player(
     fun dodajCetvrtoPolje(velicina: Int, horVer: String) {
         if (horVer == "hor") {                                                     //HORIZONTALNO
             if (prvoPolje == 0 || drugoPolje == 0 || trecePolje == 0) {
-                if (prvoPolje == 0) {
-                    cetvrtoPolje = trecePolje + 1
-                } else if (drugoPolje == 0) {
+                if (prvoPolje == 0 || drugoPolje == 0) {
                     cetvrtoPolje = trecePolje + 1
                 } else {
                     if (prvoPolje == 1) {
@@ -272,9 +240,7 @@ class Player(
                     }
                 }
             } else if (prvoPolje == 9 || drugoPolje == 9 || trecePolje == 9) {
-                if (prvoPolje == 9) {
-                    cetvrtoPolje = trecePolje - 1
-                } else if (drugoPolje == 9) {
+                if (prvoPolje == 9 || drugoPolje == 9) {
                     cetvrtoPolje = trecePolje - 1
                 } else {
                     if (prvoPolje == 8) {
@@ -286,21 +252,45 @@ class Player(
             } else {
                 if (prvoPolje > drugoPolje && prvoPolje > trecePolje) {
                     if (drugoPolje > trecePolje) {
-                        cetvrtoPolje = arrayOf(prvoPolje + 1, trecePolje - 1).random()
+                        if (trecePolje == 0) {
+                            cetvrtoPolje = prvoPolje + 1
+                        } else {
+                            cetvrtoPolje = arrayOf(prvoPolje + 1, trecePolje - 1).random()
+                        }
                     } else {
-                        cetvrtoPolje = arrayOf(prvoPolje + 1, drugoPolje - 1).random()
+                        if (drugoPolje == 0) {
+                            cetvrtoPolje = prvoPolje + 1
+                        } else {
+                            cetvrtoPolje = arrayOf(prvoPolje + 1, drugoPolje - 1).random()
+                        }
                     }
                 } else if (drugoPolje > prvoPolje && drugoPolje > trecePolje) {
                     if (prvoPolje > trecePolje) {
-                        cetvrtoPolje = arrayOf(drugoPolje + 1, trecePolje - 1).random()
+                        if (trecePolje == 0) {
+                            cetvrtoPolje = drugoPolje + 1
+                        } else {
+                            cetvrtoPolje = arrayOf(drugoPolje + 1, trecePolje - 1).random()
+                        }
                     } else {
-                        cetvrtoPolje = arrayOf(drugoPolje + 1, prvoPolje - 1).random()
+                        if (prvoPolje == 0) {
+                            cetvrtoPolje = drugoPolje + 1
+                        } else {
+                            cetvrtoPolje = arrayOf(drugoPolje + 1, prvoPolje - 1).random()
+                        }
                     }
                 } else {
                     if (prvoPolje > drugoPolje) {
-                        cetvrtoPolje = arrayOf(trecePolje + 1, drugoPolje - 1).random()
+                        if (drugoPolje == 0) {
+                            cetvrtoPolje = trecePolje + 1
+                        } else {
+                            cetvrtoPolje = arrayOf(trecePolje + 1, drugoPolje - 1).random()
+                        }
                     } else {
-                        cetvrtoPolje = arrayOf(trecePolje + 1, prvoPolje - 1).random()
+                        if (prvoPolje == 0) {
+                            cetvrtoPolje = trecePolje + 1
+                        } else {
+                            cetvrtoPolje = arrayOf(trecePolje + 1, prvoPolje - 1).random()
+                        }
                     }
                 }
             }
@@ -317,9 +307,7 @@ class Player(
             }
         } else {                                                                  //VERTIKALNO
             if (prviRed == 0 || drugiRed == 0 || treciRed == 0) {
-                if (prviRed == 0) {
-                    cetvrtiRed = treciRed + 1
-                } else if (drugiRed == 0) {
+                if (prviRed == 0 || drugiRed == 0) {
                     cetvrtiRed = treciRed + 1
                 } else {
                     if (prviRed == 1) {
@@ -329,9 +317,7 @@ class Player(
                     }
                 }
             } else if (prviRed == 9 || drugiRed == 9 || treciRed == 9) {
-                if (prviRed == 9) {
-                    cetvrtiRed = treciRed - 1
-                } else if (drugiRed == 9) {
+                if (prviRed == 9 || drugiRed == 9) {
                     cetvrtiRed = treciRed - 1
                 } else {
                     if (prviRed == 1) {
@@ -343,21 +329,45 @@ class Player(
             } else {
                 if (prviRed > drugiRed && prviRed > treciRed) {
                     if (drugiRed > treciRed) {
-                        cetvrtiRed = arrayOf(prviRed + 1, treciRed - 1).random()
+                        if (treciRed == 0) {
+                            cetvrtiRed = prviRed + 1
+                        } else {
+                            cetvrtiRed = arrayOf(prviRed + 1, treciRed - 1).random()
+                        }
                     } else {
-                        cetvrtiRed = arrayOf(prviRed + 1, drugiRed - 1).random()
+                        if (treciRed == 0) {
+                            cetvrtiRed = prviRed + 1
+                        } else {
+                            cetvrtiRed = arrayOf(prviRed + 1, drugiRed - 1).random()
+                        }
                     }
                 } else if (drugiRed > prviRed && drugiRed > treciRed) {
                     if (prviRed > treciRed) {
-                        cetvrtiRed = arrayOf(drugiRed + 1, treciRed - 1).random()
+                        if (treciRed == 0) {
+                            cetvrtiRed = drugiRed + 1
+                        } else {
+                            cetvrtiRed = arrayOf(drugiRed + 1, treciRed - 1).random()
+                        }
                     } else {
-                        cetvrtiRed = arrayOf(drugiRed + 1, prviRed - 1).random()
+                        if (treciRed == 0) {
+                            cetvrtiRed = drugiRed + 1
+                        } else {
+                            cetvrtiRed = arrayOf(drugiRed + 1, prviRed - 1).random()
+                        }
                     }
                 } else {
                     if (prviRed > drugiRed) {
-                        cetvrtiRed = arrayOf(treciRed + 1, drugiRed - 1).random()
+                        if (treciRed == 0) {
+                            cetvrtiRed = treciRed + 1
+                        } else {
+                            cetvrtiRed = arrayOf(treciRed + 1, drugiRed - 1).random()
+                        }
                     } else {
-                        cetvrtiRed = arrayOf(treciRed + 1, prviRed - 1).random()
+                        if (treciRed == 0) {
+                            cetvrtiRed = treciRed + 1
+                        } else {
+                            cetvrtiRed = arrayOf(treciRed + 1, prviRed - 1).random()
+                        }
                     }
                 }
             }
@@ -378,9 +388,7 @@ class Player(
     fun dodajPetoPolje(horVer: String) {
         if (horVer == "hor") {                                                     //HORIZONTALNO
             if (prvoPolje == 0 || drugoPolje == 0 || trecePolje == 0 || cetvrtoPolje == 0) {
-                if (prvoPolje == 0) {
-                    petoPolje = cetvrtoPolje + 1
-                } else if (drugoPolje == 0) {
+                if (prvoPolje == 0 || drugoPolje == 0) {
                     petoPolje = cetvrtoPolje + 1
                 } else if (trecePolje == 0) {               //3
                     if (prvoPolje == 1) {                        //1
@@ -424,9 +432,7 @@ class Player(
                     }
                 }
             } else if (prvoPolje == 9 || drugoPolje == 9 || trecePolje == 9 || cetvrtoPolje == 9) {
-                if (prvoPolje == 9) {
-                    petoPolje = cetvrtoPolje - 1
-                } else if (drugoPolje == 9) {
+                if (prvoPolje == 9 || drugoPolje == 9) {
                     petoPolje = cetvrtoPolje - 1
                 } else if (trecePolje == 9) {
                     if (prvoPolje == 8) {
@@ -473,81 +479,177 @@ class Player(
                 if (prvoPolje > drugoPolje && prvoPolje > trecePolje && prvoPolje > cetvrtoPolje) {
                     if (drugoPolje > trecePolje && drugoPolje > cetvrtoPolje) {
                         if (trecePolje > cetvrtoPolje) {
-                            petoPolje = arrayOf(prvoPolje + 1, cetvrtoPolje - 1).random()
+                            if (cetvrtoPolje == 0) {
+                                petoPolje = prvoPolje + 1
+                            } else {
+                                petoPolje = arrayOf(prvoPolje + 1, cetvrtoPolje - 1).random()
+                            }
                         } else {
-                            petoPolje = arrayOf(prvoPolje + 1, trecePolje - 1).random()
+                            if (trecePolje == 0) {
+                                petoPolje = prvoPolje + 1
+                            } else {
+                                petoPolje = arrayOf(prvoPolje + 1, trecePolje - 1).random()
+                            }
                         }
                     } else if (trecePolje > drugoPolje && trecePolje > cetvrtoPolje) {
                         if (drugoPolje > cetvrtoPolje) {
-                            petoPolje = arrayOf(prvoPolje + 1, cetvrtoPolje - 1).random()
+                            if (cetvrtoPolje == 0) {
+                                petoPolje = prvoPolje + 1
+                            } else {
+                                petoPolje = arrayOf(prvoPolje + 1, cetvrtoPolje - 1).random()
+                            }
                         } else {
-                            petoPolje = arrayOf(prvoPolje + 1, drugoPolje - 1).random()
+                            if (drugoPolje == 0) {
+                                petoPolje = prvoPolje + 1
+                            } else {
+                                petoPolje = arrayOf(prvoPolje + 1, drugoPolje - 1).random()
+                            }
                         }
                     } else if (cetvrtoPolje > drugoPolje && cetvrtoPolje > trecePolje) {
                         if (drugoPolje > trecePolje) {
-                            petoPolje = arrayOf(prvoPolje + 1, trecePolje - 1).random()
+                            if (trecePolje == 0) {
+                                petoPolje = prvoPolje + 1
+                            } else {
+                                petoPolje = arrayOf(prvoPolje + 1, trecePolje - 1).random()
+                            }
                         } else {
-                            petoPolje = arrayOf(prvoPolje + 1, drugoPolje - 1).random()
+                            if (drugoPolje == 0) {
+                                petoPolje = prvoPolje + 1
+                            } else {
+                                petoPolje = arrayOf(prvoPolje + 1, drugoPolje - 1).random()
+                            }
                         }
                     }
                 } else if (drugoPolje > prvoPolje && drugoPolje > trecePolje && drugoPolje > cetvrtoPolje) {      //2
                     if (prvoPolje > trecePolje && prvoPolje > cetvrtoPolje) {
                         if (trecePolje > cetvrtoPolje) {
-                            petoPolje = arrayOf(drugoPolje + 1, cetvrtoPolje - 1).random()
+                            if (cetvrtoPolje == 0) {
+                                petoPolje = drugoPolje + 1
+                            } else {
+                                petoPolje = arrayOf(drugoPolje + 1, cetvrtoPolje - 1).random()
+                            }
                         } else {
-                            petoPolje = arrayOf(drugoPolje + 1, trecePolje - 1).random()
+                            if (trecePolje == 0) {
+                                petoPolje = drugoPolje + 1
+                            } else {
+                                petoPolje = arrayOf(drugoPolje + 1, trecePolje - 1).random()
+                            }
                         }
                     } else if (trecePolje > prvoPolje && trecePolje > cetvrtoPolje) {
                         if (prvoPolje > cetvrtoPolje) {
-                            petoPolje = arrayOf(drugoPolje + 1, cetvrtoPolje - 1).random()
+                            if (cetvrtoPolje == 0) {
+                                petoPolje = drugoPolje + 1
+                            } else {
+                                petoPolje = arrayOf(drugoPolje + 1, cetvrtoPolje - 1).random()
+                            }
                         } else {
-                            petoPolje = arrayOf(drugoPolje + 1, prvoPolje - 1).random()
+                            if (prvoPolje == 0) {
+                                petoPolje = drugoPolje + 1
+                            } else {
+                                petoPolje = arrayOf(drugoPolje + 1, prvoPolje - 1).random()
+                            }
                         }
                     } else {
                         if (prvoPolje > trecePolje) {
-                            petoPolje = arrayOf(drugoPolje + 1, trecePolje - 1).random()
+                            if (trecePolje == 0) {
+                                petoPolje = drugoPolje + 1
+                            } else {
+                                petoPolje = arrayOf(drugoPolje + 1, trecePolje - 1).random()
+                            }
                         } else {
-                            petoPolje = arrayOf(drugoPolje + 1, prvoPolje - 1).random()
+                            if (prvoPolje == 0) {
+                                petoPolje = drugoPolje + 1
+                            } else {
+                                petoPolje = arrayOf(drugoPolje + 1, prvoPolje - 1).random()
+                            }
                         }
                     }
                 } else if (trecePolje > prvoPolje && trecePolje > drugoPolje && trecePolje > cetvrtoPolje) {        //3
                     if (prvoPolje > drugoPolje && prvoPolje > cetvrtoPolje) {                                           //1
-                        if (drugoPolje > cetvrtoPolje) {                                                                    //2
-                            petoPolje = arrayOf(trecePolje + 1, cetvrtoPolje - 1).random()
+                        if (drugoPolje > cetvrtoPolje) {
+                            if (cetvrtoPolje == 0) {
+                                petoPolje = trecePolje + 1
+                            } else {
+                                petoPolje = arrayOf(trecePolje + 1, cetvrtoPolje - 1).random()
+                            }
                         } else {
-                            petoPolje = arrayOf(trecePolje + 1, drugoPolje - 1).random()
+                            if (drugoPolje == 0) {
+                                petoPolje = trecePolje + 1
+                            } else {
+                                petoPolje = arrayOf(trecePolje + 1, drugoPolje - 1).random()
+                            }
                         }
                     } else if (drugoPolje > prvoPolje && drugoPolje > cetvrtoPolje) {                                   //2
-                        if (prvoPolje > cetvrtoPolje) {                                                                     //4
-                            petoPolje = arrayOf(trecePolje + 1, cetvrtoPolje - 1).random()
-                        } else {                                                                                            //1
-                            petoPolje = arrayOf(trecePolje + 1, prvoPolje - 1).random()
+                        if (prvoPolje > cetvrtoPolje) {
+                            if (cetvrtoPolje == 0) {
+                                petoPolje = trecePolje + 1
+                            } else {
+                                petoPolje = arrayOf(trecePolje + 1, cetvrtoPolje - 1).random()
+                            }
+                        } else {
+                            if (prvoPolje == 0) {
+                                petoPolje = trecePolje + 1
+                            } else {
+                                petoPolje = arrayOf(trecePolje + 1, prvoPolje - 1).random()
+                            }
                         }
                     } else {                                                                                            //3
                         if (prvoPolje > drugoPolje) {
-                            petoPolje = arrayOf(+1, drugoPolje - 1).random()
+                            if (drugoPolje == 0) {
+                                petoPolje = trecePolje + 1
+                            } else {
+                                petoPolje = arrayOf(+1, drugoPolje - 1).random()
+                            }
                         } else {
-                            petoPolje = arrayOf(trecePolje + 1, prvoPolje - 1).random()
+                            if (prvoPolje == 0) {
+                                petoPolje = trecePolje + 1
+                            } else {
+                                petoPolje = arrayOf(trecePolje + 1, prvoPolje - 1).random()
+                            }
                         }
                     }
                 } else {                                                                            //4
                     if (prvoPolje > drugoPolje && prvoPolje > trecePolje) {                            //1
                         if (drugoPolje > trecePolje) {
-                            petoPolje = arrayOf(cetvrtoPolje + 1, trecePolje - 1).random()
+                            if (trecePolje == 0) {
+                                petoPolje = cetvrtoPolje + 1
+                            } else {
+                                petoPolje = arrayOf(cetvrtoPolje + 1, trecePolje - 1).random()
+                            }
                         } else {
-                            petoPolje = arrayOf(cetvrtoPolje + 1, drugoPolje - 1).random()
+                            if (drugoPolje == 0) {
+                                petoPolje = cetvrtoPolje + 1
+                            } else {
+                                petoPolje = arrayOf(cetvrtoPolje + 1, drugoPolje - 1).random()
+                            }
                         }
                     } else if (drugoPolje > prvoPolje && drugoPolje > trecePolje) {                     //2
                         if (prvoPolje > trecePolje) {
-                            petoPolje = arrayOf(cetvrtoPolje + 1, trecePolje - 1).random()
+                            if (trecePolje == 0) {
+                                petoPolje = cetvrtoPolje + 1
+                            } else {
+                                petoPolje = arrayOf(cetvrtoPolje + 1, trecePolje - 1).random()
+                            }
                         } else {
-                            petoPolje = arrayOf(cetvrtoPolje + 1, prvoPolje - 1).random()
+                            if (prvoPolje == 0) {
+                                petoPolje = cetvrtoPolje + 1
+                            } else {
+                                petoPolje = arrayOf(cetvrtoPolje + 1, prvoPolje - 1).random()
+                            }
                         }
                     } else {                                                                      //3
                         if (prvoPolje > drugoPolje) {
-                            petoPolje = arrayOf(cetvrtoPolje + 1, drugoPolje - 1).random()
+                            if (drugoPolje == 0) {
+                                petoPolje = cetvrtoPolje + 1
+                            } else {
+                                petoPolje = arrayOf(cetvrtoPolje + 1, drugoPolje - 1).random()
+                            }
                         } else {
-                            petoPolje = arrayOf(cetvrtoPolje + 1, prvoPolje - 1).random()
+                            if (prvoPolje == 0) {
+                                petoPolje = cetvrtoPolje + 1
+                            } else {
+                                petoPolje = arrayOf(cetvrtoPolje + 1, prvoPolje - 1).random()
+                            }
                         }
                     }
                 }
@@ -563,9 +665,7 @@ class Player(
             }
         } else {                                                                             //VERTIKALNO
             if (prviRed == 0 || drugiRed == 0 || treciRed == 0 || cetvrtiRed == 0) {
-                if (prviRed == 0) {
-                    petiRed = cetvrtiRed + 1
-                } else if (drugiRed == 0) {
+                if (prviRed == 0 || drugiRed == 0) {
                     petiRed = cetvrtiRed + 1
                 } else if (treciRed == 0) {
                     if (prviRed == 1) {
@@ -609,9 +709,7 @@ class Player(
                     }
                 }
             } else if (prviRed == 9 || drugiRed == 9 || treciRed == 9 || cetvrtiRed == 9) {
-                if (prviRed == 9) {
-                    petiRed = cetvrtiRed - 1
-                } else if (drugiRed == 9) {
+                if (prviRed == 9 || drugiRed == 9) {
                     petiRed = cetvrtiRed - 1
                 } else if (treciRed == 9) {
                     if (prviRed == 8) {
@@ -658,81 +756,177 @@ class Player(
             if (prviRed > drugiRed && prviRed > treciRed && prviRed > cetvrtiRed) {
                 if (drugiRed > treciRed && drugiRed > cetvrtiRed) {
                     if (treciRed > cetvrtiRed) {
-                        petiRed = arrayOf(prviRed + 1, cetvrtiRed - 1).random()
+                        if (cetvrtiRed == 0) {
+                            petiRed = prviRed + 1
+                        } else {
+                            petiRed = arrayOf(prviRed + 1, cetvrtiRed - 1).random()
+                        }
                     } else {
-                        petiRed = arrayOf(prviRed + 1, treciRed - 1).random()
+                        if (treciRed == 0) {
+                            petiRed = prviRed + 1
+                        } else {
+                            petiRed = arrayOf(prviRed + 1, treciRed - 1).random()
+                        }
                     }
                 } else if (treciRed > drugiRed && treciRed > cetvrtiRed) {
                     if (drugiRed > cetvrtiRed) {
-                        petiRed = arrayOf(prviRed + 1, cetvrtiRed - 1).random()
+                        if (cetvrtiRed == 0) {
+                            petiRed = prviRed + 1
+                        } else {
+                            petiRed = arrayOf(prviRed + 1, cetvrtiRed - 1).random()
+                        }
                     } else {
-                        petiRed = arrayOf(prviRed + 1, drugiRed - 1).random()
+                        if (drugiRed == 0) {
+                            petiRed = prviRed + 1
+                        } else {
+                            petiRed = arrayOf(prviRed + 1, drugiRed - 1).random()
+                        }
                     }
                 } else {
                     if (drugiRed > treciRed) {
-                        petiRed = arrayOf(prviRed + 1, treciRed - 1).random()
+                        if (treciRed == 0) {
+                            petiRed = prviRed + 1
+                        } else {
+                            petiRed = arrayOf(prviRed + 1, treciRed - 1).random()
+                        }
                     } else {
-                        petiRed = arrayOf(prviRed + 1, drugiRed - 1).random()
+                        if (drugiRed == 0) {
+                            petiRed = prviRed + 1
+                        } else {
+                            petiRed = arrayOf(prviRed + 1, drugiRed - 1).random()
+                        }
                     }
                 }
             } else if (drugiRed > prviRed && drugiRed > treciRed && drugiRed > cetvrtiRed) {
                 if (prviRed > treciRed && prviRed > cetvrtiRed) {
                     if (treciRed > cetvrtiRed) {
-                        petiRed = arrayOf(drugiRed + 1, cetvrtiRed - 1).random()
+                        if (cetvrtiRed == 0) {
+                            petiRed = drugiRed + 1
+                        } else {
+                            petiRed = arrayOf(drugiRed + 1, cetvrtiRed - 1).random()
+                        }
                     } else {
-                        petiRed = arrayOf(drugiRed + 1, treciRed - 1).random()
+                        if (treciRed == 0) {
+                            petiRed = drugiRed + 1
+                        } else {
+                            petiRed = arrayOf(drugiRed + 1, treciRed - 1).random()
+                        }
                     }
                 } else if (treciRed > prviRed && treciRed > cetvrtiRed) {
                     if (prviRed > cetvrtiRed) {
-                        petiRed = arrayOf(drugiRed + 1, cetvrtiRed - 1).random()
+                        if (cetvrtiRed == 0) {
+                            petiRed = drugiRed + 1
+                        } else {
+                            petiRed = arrayOf(drugiRed + 1, cetvrtiRed - 1).random()
+                        }
                     } else {
-                        petiRed = arrayOf(drugiRed + 1, prviRed - 1).random()
+                        if (prviRed == 0) {
+                            petiRed = drugiRed + 1
+                        } else {
+                            petiRed = arrayOf(drugiRed + 1, prviRed - 1).random()
+                        }
                     }
                 } else {
                     if (prviRed > treciRed) {
-                        petiRed = arrayOf(drugiRed + 1, treciRed - 1).random()
+                        if (treciRed == 0) {
+                            petiRed = drugiRed + 1
+                        } else {
+                            petiRed = arrayOf(drugiRed + 1, treciRed - 1).random()
+                        }
                     } else {
-                        petiRed = arrayOf(drugiRed + 1, prviRed - 1).random()
+                        if (prviRed == 0) {
+                            petiRed = drugiRed + 1
+                        } else {
+                            petiRed = arrayOf(drugiRed + 1, prviRed - 1).random()
+                        }
                     }
                 }
             } else if (treciRed > prviRed && treciRed > drugiRed && treciRed > cetvrtiRed) {
                 if (prviRed > drugiRed && prviRed > cetvrtiRed) {
                     if (drugiRed > cetvrtiRed) {
-                        petiRed = arrayOf(treciRed + 1, cetvrtiRed - 1).random()
+                        if (cetvrtiRed == 0) {
+                            petiRed = treciRed + 1
+                        } else {
+                            petiRed = arrayOf(treciRed + 1, cetvrtiRed - 1).random()
+                        }
                     } else {
-                        petiRed = arrayOf(treciRed + 1, drugiRed - 1).random()
+                        if (drugiRed == 0) {
+                            petiRed = treciRed + 1
+                        } else {
+                            petiRed = arrayOf(treciRed + 1, drugiRed - 1).random()
+                        }
                     }
                 } else if (drugiRed > prviRed && drugiRed > cetvrtiRed) {
                     if (prviRed > cetvrtiRed) {
-                        petiRed = arrayOf(treciRed + 1, cetvrtiRed - 1).random()
+                        if (cetvrtiRed == 0) {
+                            petiRed = treciRed + 1
+                        } else {
+                            petiRed = arrayOf(treciRed + 1, cetvrtiRed - 1).random()
+                        }
                     } else {
-                        petiRed = arrayOf(treciRed + 1, prviRed - 1).random()
+                        if (prviRed == 0) {
+                            petiRed = treciRed + 1
+                        } else {
+                            petiRed = arrayOf(treciRed + 1, prviRed - 1).random()
+                        }
                     }
                 } else {
                     if (prviRed > drugiRed) {
-                        petiRed = arrayOf(treciRed + 1, drugiRed - 1).random()
+                        if (drugiRed == 0) {
+                            petiRed = treciRed + 1
+                        } else {
+                            petiRed = arrayOf(treciRed + 1, drugiRed - 1).random()
+                        }
                     } else {
-                        petiRed = arrayOf(treciRed + 1, prviRed - 1).random()
+                        if (prviRed == 0) {
+                            petiRed = treciRed + 1
+                        } else {
+                            petiRed = arrayOf(treciRed + 1, prviRed - 1).random()
+                        }
                     }
                 }
             } else {
                 if (prviRed > drugiRed && prviRed > treciRed) {
                     if (drugiRed > treciRed) {
-                        petiRed = arrayOf(cetvrtiRed + 1, treciRed - 1).random()
+                        if (treciRed == 0) {
+                            petiRed = cetvrtiRed + 1
+                        } else {
+                            petiRed = arrayOf(cetvrtiRed + 1, treciRed - 1).random()
+                        }
                     } else {
-                        petiRed = arrayOf(cetvrtiRed + 1, drugiRed - 1).random()
+                        if (drugiRed == 0) {
+                            petiRed = cetvrtiRed + 1
+                        } else {
+                            petiRed = arrayOf(cetvrtiRed + 1, drugiRed - 1).random()
+                        }
                     }
                 } else if (drugiRed > prviRed && drugiRed > treciRed) {
                     if (prviRed > treciRed) {
-                        petiRed = arrayOf(cetvrtiRed + 1, treciRed - 1).random()
+                        if (treciRed == 0) {
+                            petiRed = cetvrtiRed + 1
+                        } else {
+                            petiRed = arrayOf(cetvrtiRed + 1, treciRed - 1).random()
+                        }
                     } else {
-                        petiRed = arrayOf(cetvrtiRed + 1, prviRed - 1).random()
+                        if (prviRed == 0) {
+                            petiRed = cetvrtiRed + 1
+                        } else {
+                            petiRed = arrayOf(cetvrtiRed + 1, prviRed - 1).random()
+                        }
                     }
                 } else {
                     if (prviRed > drugiRed) {
-                        petiRed = arrayOf(cetvrtiRed + 1, drugiRed - 1).random()
+                        if (drugiRed == 0) {
+                            petiRed = cetvrtiRed + 1
+                        } else {
+                            petiRed = arrayOf(cetvrtiRed + 1, drugiRed - 1).random()
+                        }
                     } else {
-                        petiRed = arrayOf(cetvrtiRed + 1, prviRed - 1).random()
+                        if (prviRed == 0) {
+                            petiRed = cetvrtiRed + 1
+                        } else {
+                            petiRed = arrayOf(cetvrtiRed + 1, prviRed - 1).random()
+                        }
                     }
                 }
             }
