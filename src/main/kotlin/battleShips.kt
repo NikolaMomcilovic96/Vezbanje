@@ -481,12 +481,16 @@ class Player(
                         if (trecePolje > cetvrtoPolje) {
                             if (cetvrtoPolje == 0) {
                                 petoPolje = prvoPolje + 1
+                            } else if (prvoPolje == 9) {
+                                petoPolje = cetvrtoPolje - 1
                             } else {
                                 petoPolje = arrayOf(prvoPolje + 1, cetvrtoPolje - 1).random()
                             }
                         } else {
                             if (trecePolje == 0) {
                                 petoPolje = prvoPolje + 1
+                            } else if (prvoPolje == 9) {
+                                petoPolje = trecePolje - 1
                             } else {
                                 petoPolje = arrayOf(prvoPolje + 1, trecePolje - 1).random()
                             }
@@ -495,12 +499,16 @@ class Player(
                         if (drugoPolje > cetvrtoPolje) {
                             if (cetvrtoPolje == 0) {
                                 petoPolje = prvoPolje + 1
+                            } else if (prvoPolje == 9) {
+                                petoPolje = cetvrtoPolje - 1
                             } else {
                                 petoPolje = arrayOf(prvoPolje + 1, cetvrtoPolje - 1).random()
                             }
                         } else {
                             if (drugoPolje == 0) {
                                 petoPolje = prvoPolje + 1
+                            } else if (prvoPolje == 9) {
+                                petoPolje = drugoPolje - 1
                             } else {
                                 petoPolje = arrayOf(prvoPolje + 1, drugoPolje - 1).random()
                             }
@@ -509,12 +517,16 @@ class Player(
                         if (drugoPolje > trecePolje) {
                             if (trecePolje == 0) {
                                 petoPolje = prvoPolje + 1
+                            } else if (prvoPolje == 9) {
+                                petoPolje = trecePolje - 1
                             } else {
                                 petoPolje = arrayOf(prvoPolje + 1, trecePolje - 1).random()
                             }
                         } else {
                             if (drugoPolje == 0) {
                                 petoPolje = prvoPolje + 1
+                            } else if (prvoPolje == 9) {
+                                petoPolje = drugoPolje - 1
                             } else {
                                 petoPolje = arrayOf(prvoPolje + 1, drugoPolje - 1).random()
                             }
@@ -525,12 +537,16 @@ class Player(
                         if (trecePolje > cetvrtoPolje) {
                             if (cetvrtoPolje == 0) {
                                 petoPolje = drugoPolje + 1
+                            } else if (drugoPolje == 9) {
+                                petoPolje = cetvrtoPolje - 1
                             } else {
                                 petoPolje = arrayOf(drugoPolje + 1, cetvrtoPolje - 1).random()
                             }
                         } else {
                             if (trecePolje == 0) {
                                 petoPolje = drugoPolje + 1
+                            } else if (drugoPolje == 9) {
+                                petoPolje = trecePolje - 1
                             } else {
                                 petoPolje = arrayOf(drugoPolje + 1, trecePolje - 1).random()
                             }
@@ -539,12 +555,16 @@ class Player(
                         if (prvoPolje > cetvrtoPolje) {
                             if (cetvrtoPolje == 0) {
                                 petoPolje = drugoPolje + 1
+                            } else if (drugoPolje == 9) {
+                                petoPolje = cetvrtoPolje - 1
                             } else {
                                 petoPolje = arrayOf(drugoPolje + 1, cetvrtoPolje - 1).random()
                             }
                         } else {
                             if (prvoPolje == 0) {
                                 petoPolje = drugoPolje + 1
+                            } else if (drugoPolje == 9) {
+                                petoPolje = prvoPolje - 1
                             } else {
                                 petoPolje = arrayOf(drugoPolje + 1, prvoPolje - 1).random()
                             }
@@ -553,12 +573,16 @@ class Player(
                         if (prvoPolje > trecePolje) {
                             if (trecePolje == 0) {
                                 petoPolje = drugoPolje + 1
+                            } else if (drugoPolje == 9) {
+                                petoPolje = trecePolje - 1
                             } else {
                                 petoPolje = arrayOf(drugoPolje + 1, trecePolje - 1).random()
                             }
                         } else {
                             if (prvoPolje == 0) {
                                 petoPolje = drugoPolje + 1
+                            } else if (drugoPolje == 9) {
+                                petoPolje = prvoPolje - 1
                             } else {
                                 petoPolje = arrayOf(drugoPolje + 1, prvoPolje - 1).random()
                             }
@@ -569,12 +593,16 @@ class Player(
                         if (drugoPolje > cetvrtoPolje) {
                             if (cetvrtoPolje == 0) {
                                 petoPolje = trecePolje + 1
+                            } else if (trecePolje == 9) {
+                                petoPolje = cetvrtoPolje - 1
                             } else {
                                 petoPolje = arrayOf(trecePolje + 1, cetvrtoPolje - 1).random()
                             }
                         } else {
                             if (drugoPolje == 0) {
                                 petoPolje = trecePolje + 1
+                            } else if (trecePolje == 9) {
+                                petoPolje = drugoPolje - 1
                             } else {
                                 petoPolje = arrayOf(trecePolje + 1, drugoPolje - 1).random()
                             }
@@ -583,12 +611,16 @@ class Player(
                         if (prvoPolje > cetvrtoPolje) {
                             if (cetvrtoPolje == 0) {
                                 petoPolje = trecePolje + 1
+                            } else if (trecePolje == 9) {
+                                petoPolje = cetvrtoPolje - 1
                             } else {
                                 petoPolje = arrayOf(trecePolje + 1, cetvrtoPolje - 1).random()
                             }
                         } else {
                             if (prvoPolje == 0) {
                                 petoPolje = trecePolje + 1
+                            } else if (trecePolje == 9) {
+                                petoPolje = prvoPolje - 1
                             } else {
                                 petoPolje = arrayOf(trecePolje + 1, prvoPolje - 1).random()
                             }
@@ -597,12 +629,16 @@ class Player(
                         if (prvoPolje > drugoPolje) {
                             if (drugoPolje == 0) {
                                 petoPolje = trecePolje + 1
+                            } else if (trecePolje == 9) {
+                                petoPolje = drugoPolje - 1
                             } else {
-                                petoPolje = arrayOf(+1, drugoPolje - 1).random()
+                                petoPolje = arrayOf(trecePolje + 1, drugoPolje - 1).random()
                             }
                         } else {
                             if (prvoPolje == 0) {
                                 petoPolje = trecePolje + 1
+                            } else if (trecePolje == 9) {
+                                petoPolje = prvoPolje - 1
                             } else {
                                 petoPolje = arrayOf(trecePolje + 1, prvoPolje - 1).random()
                             }
@@ -613,12 +649,16 @@ class Player(
                         if (drugoPolje > trecePolje) {
                             if (trecePolje == 0) {
                                 petoPolje = cetvrtoPolje + 1
+                            } else if (cetvrtoPolje == 9) {
+                                petoPolje = trecePolje - 1
                             } else {
                                 petoPolje = arrayOf(cetvrtoPolje + 1, trecePolje - 1).random()
                             }
                         } else {
                             if (drugoPolje == 0) {
                                 petoPolje = cetvrtoPolje + 1
+                            } else if (cetvrtoPolje == 9) {
+                                petoPolje = drugoPolje - 1
                             } else {
                                 petoPolje = arrayOf(cetvrtoPolje + 1, drugoPolje - 1).random()
                             }
@@ -627,12 +667,16 @@ class Player(
                         if (prvoPolje > trecePolje) {
                             if (trecePolje == 0) {
                                 petoPolje = cetvrtoPolje + 1
+                            } else if (cetvrtoPolje == 9) {
+                                petoPolje = trecePolje - 1
                             } else {
                                 petoPolje = arrayOf(cetvrtoPolje + 1, trecePolje - 1).random()
                             }
                         } else {
                             if (prvoPolje == 0) {
                                 petoPolje = cetvrtoPolje + 1
+                            } else if (cetvrtoPolje == 9) {
+                                petoPolje = prvoPolje - 1
                             } else {
                                 petoPolje = arrayOf(cetvrtoPolje + 1, prvoPolje - 1).random()
                             }
@@ -641,12 +685,16 @@ class Player(
                         if (prvoPolje > drugoPolje) {
                             if (drugoPolje == 0) {
                                 petoPolje = cetvrtoPolje + 1
+                            } else if (cetvrtoPolje == 9) {
+                                petoPolje = drugoPolje - 1
                             } else {
                                 petoPolje = arrayOf(cetvrtoPolje + 1, drugoPolje - 1).random()
                             }
                         } else {
                             if (prvoPolje == 0) {
                                 petoPolje = cetvrtoPolje + 1
+                            } else if (cetvrtoPolje == 9) {
+                                petoPolje = prvoPolje - 1
                             } else {
                                 petoPolje = arrayOf(cetvrtoPolje + 1, prvoPolje - 1).random()
                             }
@@ -758,12 +806,16 @@ class Player(
                     if (treciRed > cetvrtiRed) {
                         if (cetvrtiRed == 0) {
                             petiRed = prviRed + 1
+                        } else if (prviRed == 9) {
+                            petiRed = cetvrtiRed - 1
                         } else {
                             petiRed = arrayOf(prviRed + 1, cetvrtiRed - 1).random()
                         }
                     } else {
                         if (treciRed == 0) {
                             petiRed = prviRed + 1
+                        } else if (prviRed == 9) {
+                            petiRed = treciRed - 1
                         } else {
                             petiRed = arrayOf(prviRed + 1, treciRed - 1).random()
                         }
@@ -772,12 +824,16 @@ class Player(
                     if (drugiRed > cetvrtiRed) {
                         if (cetvrtiRed == 0) {
                             petiRed = prviRed + 1
+                        } else if (prviRed == 9) {
+                            petiRed = cetvrtiRed - 1
                         } else {
                             petiRed = arrayOf(prviRed + 1, cetvrtiRed - 1).random()
                         }
                     } else {
                         if (drugiRed == 0) {
                             petiRed = prviRed + 1
+                        } else if (prviRed == 9) {
+                            petiRed = drugiRed - 1
                         } else {
                             petiRed = arrayOf(prviRed + 1, drugiRed - 1).random()
                         }
@@ -786,12 +842,16 @@ class Player(
                     if (drugiRed > treciRed) {
                         if (treciRed == 0) {
                             petiRed = prviRed + 1
+                        } else if (prviRed == 9) {
+                            petiRed = treciRed - 1
                         } else {
                             petiRed = arrayOf(prviRed + 1, treciRed - 1).random()
                         }
                     } else {
                         if (drugiRed == 0) {
                             petiRed = prviRed + 1
+                        } else if (prviRed == 9) {
+                            petiRed = drugiRed - 1
                         } else {
                             petiRed = arrayOf(prviRed + 1, drugiRed - 1).random()
                         }
@@ -802,12 +862,16 @@ class Player(
                     if (treciRed > cetvrtiRed) {
                         if (cetvrtiRed == 0) {
                             petiRed = drugiRed + 1
+                        } else if (drugiRed == 9) {
+                            petiRed = cetvrtiRed - 1
                         } else {
                             petiRed = arrayOf(drugiRed + 1, cetvrtiRed - 1).random()
                         }
                     } else {
                         if (treciRed == 0) {
                             petiRed = drugiRed + 1
+                        } else if (drugiRed == 9) {
+                            petiRed = treciRed - 1
                         } else {
                             petiRed = arrayOf(drugiRed + 1, treciRed - 1).random()
                         }
@@ -816,12 +880,16 @@ class Player(
                     if (prviRed > cetvrtiRed) {
                         if (cetvrtiRed == 0) {
                             petiRed = drugiRed + 1
+                        } else if (drugiRed == 9) {
+                            petiRed = cetvrtiRed - 1
                         } else {
                             petiRed = arrayOf(drugiRed + 1, cetvrtiRed - 1).random()
                         }
                     } else {
                         if (prviRed == 0) {
                             petiRed = drugiRed + 1
+                        } else if (drugiRed == 9) {
+                            petiRed = prviRed - 1
                         } else {
                             petiRed = arrayOf(drugiRed + 1, prviRed - 1).random()
                         }
@@ -830,12 +898,16 @@ class Player(
                     if (prviRed > treciRed) {
                         if (treciRed == 0) {
                             petiRed = drugiRed + 1
+                        } else if (drugiRed == 9) {
+                            petiRed = treciRed - 1
                         } else {
                             petiRed = arrayOf(drugiRed + 1, treciRed - 1).random()
                         }
                     } else {
                         if (prviRed == 0) {
                             petiRed = drugiRed + 1
+                        } else if (drugiRed == 9) {
+                            petiRed = prviRed - 1
                         } else {
                             petiRed = arrayOf(drugiRed + 1, prviRed - 1).random()
                         }
@@ -846,12 +918,16 @@ class Player(
                     if (drugiRed > cetvrtiRed) {
                         if (cetvrtiRed == 0) {
                             petiRed = treciRed + 1
+                        } else if (treciRed == 9) {
+                            petiRed = cetvrtiRed - 1
                         } else {
                             petiRed = arrayOf(treciRed + 1, cetvrtiRed - 1).random()
                         }
                     } else {
                         if (drugiRed == 0) {
                             petiRed = treciRed + 1
+                        } else if (treciRed == 9) {
+                            petiRed = drugiRed - 1
                         } else {
                             petiRed = arrayOf(treciRed + 1, drugiRed - 1).random()
                         }
@@ -860,12 +936,16 @@ class Player(
                     if (prviRed > cetvrtiRed) {
                         if (cetvrtiRed == 0) {
                             petiRed = treciRed + 1
+                        } else if (treciRed == 9) {
+                            petiRed = cetvrtiRed - 1
                         } else {
                             petiRed = arrayOf(treciRed + 1, cetvrtiRed - 1).random()
                         }
                     } else {
                         if (prviRed == 0) {
                             petiRed = treciRed + 1
+                        } else if (treciRed == 9) {
+                            petiRed = prviRed - 1
                         } else {
                             petiRed = arrayOf(treciRed + 1, prviRed - 1).random()
                         }
@@ -874,12 +954,16 @@ class Player(
                     if (prviRed > drugiRed) {
                         if (drugiRed == 0) {
                             petiRed = treciRed + 1
+                        } else if (treciRed == 9) {
+                            petiRed = drugiRed - 1
                         } else {
                             petiRed = arrayOf(treciRed + 1, drugiRed - 1).random()
                         }
                     } else {
                         if (prviRed == 0) {
                             petiRed = treciRed + 1
+                        } else if (treciRed == 9) {
+                            petiRed = prviRed - 1
                         } else {
                             petiRed = arrayOf(treciRed + 1, prviRed - 1).random()
                         }
@@ -890,12 +974,16 @@ class Player(
                     if (drugiRed > treciRed) {
                         if (treciRed == 0) {
                             petiRed = cetvrtiRed + 1
+                        } else if (cetvrtiRed == 9) {
+                            petiRed = treciRed - 1
                         } else {
                             petiRed = arrayOf(cetvrtiRed + 1, treciRed - 1).random()
                         }
                     } else {
                         if (drugiRed == 0) {
                             petiRed = cetvrtiRed + 1
+                        } else if (cetvrtiRed == 9) {
+                            petiRed = drugiRed - 1
                         } else {
                             petiRed = arrayOf(cetvrtiRed + 1, drugiRed - 1).random()
                         }
@@ -904,12 +992,16 @@ class Player(
                     if (prviRed > treciRed) {
                         if (treciRed == 0) {
                             petiRed = cetvrtiRed + 1
+                        } else if (cetvrtiRed == 9) {
+                            petiRed = treciRed - 1
                         } else {
                             petiRed = arrayOf(cetvrtiRed + 1, treciRed - 1).random()
                         }
                     } else {
                         if (prviRed == 0) {
                             petiRed = cetvrtiRed + 1
+                        } else if (cetvrtiRed == 9) {
+                            petiRed = prviRed - 1
                         } else {
                             petiRed = arrayOf(cetvrtiRed + 1, prviRed - 1).random()
                         }
@@ -918,12 +1010,16 @@ class Player(
                     if (prviRed > drugiRed) {
                         if (drugiRed == 0) {
                             petiRed = cetvrtiRed + 1
+                        } else if (cetvrtiRed == 9) {
+                            petiRed = drugiRed - 1
                         } else {
                             petiRed = arrayOf(cetvrtiRed + 1, drugiRed - 1).random()
                         }
                     } else {
                         if (prviRed == 0) {
                             petiRed = cetvrtiRed + 1
+                        } else if (cetvrtiRed == 9) {
+                            petiRed = prviRed - 1
                         } else {
                             petiRed = arrayOf(cetvrtiRed + 1, prviRed - 1).random()
                         }
