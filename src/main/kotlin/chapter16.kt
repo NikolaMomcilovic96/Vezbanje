@@ -13,8 +13,12 @@ enum class DayOfTheWeek(val isWeekend: Boolean = false) {
         return if (this.ordinal < other.ordinal) {
             other.ordinal - this.ordinal
         } else {
-            other.ordinal - this.ordinal + DayOfTheWeek.values().count()
+            other.ordinal - this.ordinal + values().count()
         }
+    }
+
+    fun daysUntilWeekend(): Int {
+        return daysUntil(firstWeekendDay())
     }
 
     companion object {
@@ -23,15 +27,25 @@ enum class DayOfTheWeek(val isWeekend: Boolean = false) {
 
             var adjustedDay = calendarDayOfTheWeek - 2
 
-            val days = DayOfTheWeek.values()
+            val days = values()
 
             if (adjustedDay < 0) {
                 adjustedDay += days.count()
             }
 
-            val today = days.first { it.ordinal == adjustedDay }
+            return days.first { it.ordinal == adjustedDay }
+        }
 
-            return today
+        fun forIndex(index: Int): DayOfTheWeek? {
+            return values().firstOrNull { it.ordinal == index }
+        }
+
+        fun forString(string: String): DayOfTheWeek? {
+            return values().firstOrNull { it.name == string }
+        }
+
+        fun firstWeekendDay(): DayOfTheWeek {
+            return values().first { it.isWeekend }
         }
     }
 }
@@ -61,6 +75,25 @@ sealed class AcceptedCurrency {
 
     fun totalValueInDollars(): Float {
         return amount * valueInDollars
+    }
+
+    companion object {
+        fun checkSufficientFunds(fundsAvailable: List<AcceptedCurrency>, purchasePriceInDollars: Float): Boolean {
+            val totalFudnsInDollars =
+                fundsAvailable.fold(0.0f) { accumulator, currency -> accumulator + currency.valueInDollars }
+            return totalFudnsInDollars >= purchasePriceInDollars
+        }
+    }
+
+    operator fun plus(otherFunds: AcceptedCurrency):AcceptedCurrency{
+        if (this::class==otherFunds::class){
+            this.amount+=otherFunds.amount
+            return this
+        }else{
+            val dollars = Dollar()
+            dollars.amount=this.valueInDollars+otherFunds.valueInDollars
+            return dollars
+        }
     }
 }
 
@@ -96,7 +129,30 @@ fun main() {
         //else -> println("I don't feel like singing")
     }
 
+    //CHALLENGE
+
+    val dayAtIndex = DayOfTheWeek.forIndex(3)
+    println("Day at index 3: $dayAtIndex")
+
+    val thursdayString = "Thursday"
+    val thursdayDay = DayOfTheWeek.forString(thursdayString)
+    println("Day of string $thursdayString is $thursdayDay")
+
+    val firstWeekendDay = DayOfTheWeek.firstWeekendDay()
+    val daysUntilWeekendFromWednesday = DayOfTheWeek.Wednesday.daysUntilWeekend()
+    println("From Wednesday there are $daysUntilWeekendFromWednesday days until the weekend, which starts on $firstWeekendDay")
+
+    val daysUntilWeekendFromSaturday = DayOfTheWeek.Saturday.daysUntilWeekend()
+    println("From Saturday there are $daysUntilWeekendFromSaturday days until the weekend, which starts on $firstWeekendDay")
+
+
     val currency = AcceptedCurrency.Crypto()
     currency.amount = .27541f
     println("${currency.amount} of ${currency.name} is ${currency.totalValueInDollars()} in US Dollars!")
+
+    val dollars = AcceptedCurrency.Dollar()
+    dollars.amount = 2000f
+
+    val sufficentBalance = AcceptedCurrency.checkSufficientFunds(listOf(currency, dollars), 1000f)
+    println("You ${if (sufficentBalance) "do" else "do not"} have enough money to buy the thing!")
 }
