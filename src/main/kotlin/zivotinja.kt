@@ -69,15 +69,15 @@ fun main() {
     val duzina = recenica.count()
     val novaRecenica = ""
     val pocetna = 0
-    fun reverse(duzina: Int, novaRecenica: String, pocetna: Int){
+    fun reverse(duzina: Int, novaRecenica: String, pocetna: Int) {
         var trenutna = pocetna
-        val slovo = recenica[duzina-trenutna-1]
+        val slovo = recenica[duzina - trenutna - 1]
         var najnovijaRecenica = novaRecenica
         najnovijaRecenica += slovo
-        if (trenutna < duzina-1){
+        if (trenutna < duzina - 1) {
             trenutna += 1
             reverse(duzina, najnovijaRecenica, trenutna)
-        }else{
+        } else {
             print(najnovijaRecenica)
         }
     }
@@ -87,9 +87,9 @@ fun main() {
     println()
 
 
-    fun tablicaMnozenja(duzina: Int){
-        for (i in 0..duzina){
-            for (j in 1..duzina){
+    fun tablicaMnozenja(duzina: Int) {
+        for (i in 0..duzina) {
+            for (j in 1..duzina) {
                 print("    " + i * j)
             }
             println()
@@ -100,20 +100,18 @@ fun main() {
 
     val secretNumber = 14
     val counter = 1
-    fun guessTheNumber(number: Int, counter: Int){
+    fun guessTheNumber(number: Int, counter: Int) {
         var newCounter = counter
 
-        if (number < secretNumber){
+        if (number < secretNumber) {
             println("Greska. Broj $number je manji od trazenog broja.")
             newCounter += 1
             guessTheNumber(17, newCounter)
-        }
-        else if (number > secretNumber){
+        } else if (number > secretNumber) {
             println("Greska. Broj $number je veci od trazenog broja.")
             newCounter += 1
             guessTheNumber(14, newCounter)
-        }
-        else if ( number == secretNumber){
+        } else if (number == secretNumber) {
             println("Pogodili ste broj $secretNumber iz $counter pokusaja.")
         }
     }
@@ -122,16 +120,16 @@ fun main() {
 
     //VEZBANJE WHEN
 
-    fun areEqual(a: Int, b: Int){
+    fun areEqual(a: Int, b: Int) {
         when (a) {
             b -> println("First number $a is equal to second $b.")
             else -> println("Number $a is not equal to $b")
         }
     }
-    areEqual(5,3)
+    areEqual(5, 3)
 
 
-    fun numberEvenOrOdd(number: Int){
+    fun numberEvenOrOdd(number: Int) {
         when {
             number % 2 == 0 -> println("Number $number is even.")
             number % 2 == 1 -> println("Number $number is odd.")
@@ -141,8 +139,8 @@ fun main() {
     numberEvenOrOdd(43)
 
 
-    fun leapYear(year: Int){
-        when{
+    fun leapYear(year: Int) {
+        when {
             year % 3 == 0 && year % 100 != 0 || year % 400 == 0 -> println("Year $year is leap year.")
             else -> println("Year $year is not leap year.")
         }
@@ -150,7 +148,7 @@ fun main() {
     leapYear(2021)
 
 
-    fun quadricEquation(a: Double, b: Double, c: Double){
+    fun quadricEquation(a: Double, b: Double, c: Double) {
         val d = (b * b) - 4 * a * c
         val x1 = (-b + sqrt(d)) / (2 * a)
         val x2 = (-b + sqrt(d)) / (2 * a)
@@ -160,10 +158,10 @@ fun main() {
             d > 0 -> println("X1: $x1, X2: $x2")
         }
     }
-    quadricEquation(3.0,6.0,2.0)
+    quadricEquation(3.0, 6.0, 2.0)
 
 
-    fun temperatureCelsius(temperature: Int){
+    fun temperatureCelsius(temperature: Int) {
         when {
             temperature < 0 -> println("Freezing weather.")
             temperature in 0..9 -> println("Very cold weather.")
@@ -176,7 +174,7 @@ fun main() {
     temperatureCelsius(28)
 
 
-    fun digitMonthToString(numberOfMonth: Int){
+    fun digitMonthToString(numberOfMonth: Int) {
         when (numberOfMonth) {
             1 -> println("January")
             2 -> println("February")
@@ -226,3 +224,4 @@ fun diagonal1() {
         println(nule[i].contentToString())
     }
 }
+
