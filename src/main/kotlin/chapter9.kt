@@ -1,5 +1,3 @@
-
-
 fun main() {
     val nikolaData = mutableMapOf<String, String>()
 
@@ -10,7 +8,7 @@ fun main() {
     nikolaData.put("worksAt", "Consulteer")
     nikolaData.put("years", "25")
 
-    fun printAddressAndState(person: Map<String, String>) {
+    fun printAddressAndState(person: MutableMap<String, String>) {
         println(person["address"])
         println(person["state"])
     }
@@ -38,7 +36,7 @@ fun main() {
         "NY" to "New York",
         "CA" to "California"
     )
-    fun printStates(states: Map<String, String>){
+    fun printStates(states: kotlin.collections.Map<String, String>){
         for ((index, value) in states){
             val nameLength = value.length
 
@@ -50,7 +48,7 @@ fun main() {
     printStates(states)
 
     //2
-    fun mergeMaps(map1: Map<String, String>, map2: Map<String, String>) : Map<String, String>{
+    fun mergeMaps(map1: kotlin.collections.Map<String, String>, map2: kotlin.collections.Map<String, String>) : MutableMap<String, String> {
         val newMap = mutableMapOf<String, String>()
 
         for ((mapOneIndex, mapOneValue) in map1){
@@ -62,11 +60,6 @@ fun main() {
             }
         }
         return newMap
-
-        /*
-             newMap.putAll[map1]
-             newMap.putAll[map2]
-        */
     }
     val map1 = mapOf(
         "1" to "2",
@@ -79,7 +72,7 @@ fun main() {
     println(mergeMaps(map1, map2))
 
     //3
-    fun occurrencesOfCharacters(text: String): Map<Char, Int>{
+    fun occurrencesOfCharacters(text: String): MutableMap<Char, Int> {
         val numberOfChars = mutableMapOf<Char, Int>()
 
         for (character in text){
@@ -92,7 +85,7 @@ fun main() {
     println(occurrencesOfCharacters(text))
 
     //4
-    fun isInvertible(map: Map<String, Int>) = map.values.toSet().size == map.values.size
+    fun isInvertible(map: kotlin.collections.Map<String, Int>) = map.values.toSet().size == map.values.size
     val invertibleMap = mapOf("1" to 1, "2" to 2, "3" to 3)
     println(isInvertible(invertibleMap))
 

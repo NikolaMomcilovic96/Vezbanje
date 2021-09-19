@@ -1,3 +1,5 @@
+import kotlin.collections.Map
+
 fun main() {
     val marie = Student(1, "Marie", "Curie")
     val albert = Student(2, "Albert", "Einstein")
