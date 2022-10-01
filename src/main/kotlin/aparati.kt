@@ -1,6 +1,9 @@
 fun main() {
+    println("Unesite vas ulog")
+    val unesenUlog = readLine()!!.toInt()
+    ukupno = unesenUlog
     while (ukupno > 19) {
-        println("Izaberite cip 4 ili 6")
+        println("Izaberite cip 4, 6 ili 8")
         val cip = readLine()!!.toInt()
         if (cip == 4) {
             promeniBrojeve()
@@ -21,7 +24,7 @@ fun main() {
     println("Izgubili ste. Ostalo vam je $ukupno dinara")
 }
 
-var ukupno = 50
+var ukupno = 0
 
 val nizovi = arrayListOf(
     (arrayListOf(0, 0, 0, 0, 0)),
@@ -29,7 +32,7 @@ val nizovi = arrayListOf(
     (arrayListOf(0, 0, 0, 0, 0))
 )
 
-val brojevi = arrayListOf(1, 2, 3, 4)
+val brojevi = arrayListOf(1, 2, 3, 4, 5)
 
 fun promeniBrojeve() {
     for (i in 0..2) {
@@ -107,29 +110,57 @@ fun proveriDijagonalu(): Int {
     when {
         nizovi[0][0] == nizovi[1][1] && nizovi[0][0] == nizovi[2][2] -> {
             dobitak += 1
-            println("Dijagonala")
+            println("Dijagonala [0][0]")
         }
 
         nizovi[0][1] == nizovi[1][2] && nizovi[0][1] == nizovi[2][3] -> {
             dobitak += 1
-            println("Dijagonala")
+            println("Dijagonala [0][1]")
         }
 
         nizovi[0][2] == nizovi[1][3] && nizovi[0][2] == nizovi[2][4] -> {
             dobitak += 1
-            println("Dijagonala")
+            println("Dijagonala [0][2]")
         }
 
         nizovi[2][0] == nizovi[1][1] && nizovi[2][0] == nizovi[0][2] -> {
             dobitak += 1
-            println("Dijagonala")
+            println("Dijagonala [2][0]")
         }
 
         nizovi[2][1] == nizovi[1][2] && nizovi[2][1] == nizovi[0][3] -> {
             dobitak += 1
-            println("Dijagonala")
+            println("Dijagonala [2][0]")
         }
     }
+    return dobitak
+}
+
+fun proveriKrivudavo(): Int {
+    var dobitak = 0
+
+    when {
+        nizovi[0][0] == nizovi[1][1] && nizovi[0][0] == nizovi[1][2] && nizovi[0][0] == nizovi[2][3] -> {
+            dobitak += 1
+            println("Unakrsno [0][0]")
+        }
+
+        nizovi[0][1] == nizovi[1][2] && nizovi[0][1] == nizovi[1][3] && nizovi[0][1] == nizovi[2][4] -> {
+            dobitak += 1
+            println("Unakrsno [0][1]")
+        }
+
+        nizovi[2][0] == nizovi[1][1] && nizovi[2][0] == nizovi[1][2] && nizovi[2][0] == nizovi[0][3] -> {
+            dobitak += 1
+            println("Unakrsno [2][0]")
+        }
+
+        nizovi[2][1] == nizovi[1][2] && nizovi[2][1] == nizovi[1][3] && nizovi[2][1] == nizovi[0][4] -> {
+            dobitak += 1
+            println("Unakrsno [2][1]")
+        }
+    }
+
     return dobitak
 }
 
@@ -166,7 +197,19 @@ fun proveriCip6() {
 }
 
 fun proveriCip8() {
-    TODO("Not yet implemented")
+    val ulog = 50
+    ukupno -= ulog
+    val dobitak = proveriVertikalu() + proveriHorizontalu() + proveriDijagonalu() + proveriKrivudavo()
+    ukupno += dobitak * ulog
+    if (ulog * dobitak - ulog < 0) {
+        println("Izgubili ste $ulog dinara")
+    } else if (ulog * dobitak - ulog == 0) {
+        println("Ostaje isto")
+    } else {
+        println("Zaradili ste ${ulog * dobitak - ulog} dinara")
+    }
+    println("Ukupno: $ukupno dinara")
+    println(dobitak)
 }
 
 fun ispisiNizove() {
