@@ -6,20 +6,16 @@ fun main() {
         println("Izaberite cip 4, 6 ili 8")
         val cip = readLine()!!.toInt()
         if (cip == 4) {
-            promeniBrojeve()
-            proveriCip4()
-            ispisiNizove()
+            proveriCip(20)
         } else if (cip == 6) {
-            promeniBrojeve()
-            proveriCip6()
-            ispisiNizove()
+            proveriCip(35)
         } else if (cip == 8) {
-            promeniBrojeve()
-            proveriCip8()
-            ispisiNizove()
+            proveriCip(50)
         } else {
             println("Pogresan unos.")
         }
+        promeniBrojeve()
+        ispisiNizove()
     }
     println("Izgubili ste. Ostalo vam je $ukupno dinara")
 }
@@ -164,40 +160,7 @@ fun proveriKrivudavo(): Int {
     return dobitak
 }
 
-fun proveriCip4() {
-    val ulog = 20
-    ukupno -= ulog
-    val dobitak = proveriVertikalu() + proveriHorizontalu()
-    ukupno += dobitak * ulog
-    if (ulog * dobitak - ulog < 0) {
-        println("Izgubili ste $ulog dinara")
-    } else if (ulog * dobitak - ulog == 0) {
-        println("Ostaje isto")
-    } else {
-        println("Zaradili ste ${ulog * dobitak - ulog} dinara")
-    }
-    println("Ukupno: $ukupno dinara")
-    println(dobitak)
-}
-
-fun proveriCip6() {
-    val ulog = 35
-    ukupno -= ulog
-    val dobitak = proveriVertikalu() + proveriHorizontalu() + proveriDijagonalu()
-    ukupno += dobitak * ulog
-    if (ulog * dobitak - ulog < 0) {
-        println("Izgubili ste $ulog dinara")
-    } else if (ulog * dobitak - ulog == 0) {
-        println("Ostaje isto")
-    } else {
-        println("Zaradili ste ${ulog * dobitak - ulog} dinara")
-    }
-    println("Ukupno: $ukupno dinara")
-    println(dobitak)
-}
-
-fun proveriCip8() {
-    val ulog = 50
+fun proveriCip(ulog: Int) {
     ukupno -= ulog
     val dobitak = proveriVertikalu() + proveriHorizontalu() + proveriDijagonalu() + proveriKrivudavo()
     ukupno += dobitak * ulog
