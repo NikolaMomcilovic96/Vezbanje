@@ -156,7 +156,6 @@ fun proveriKrivudavo(): Int {
             println("Unakrsno [2][1]")
         }
     }
-
     return dobitak
 }
 
